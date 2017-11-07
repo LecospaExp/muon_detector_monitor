@@ -35,47 +35,47 @@ write2file('===Start counting from '+str(start_time)+'===');
 
 plt.ion();
 
-if GPIO.input(16):
-    counter = [0]*9;
-else:
-# while True:
-	event = parseInt(input_data.readline());
-	print(event);
+while True:
+	if GPIO.input(16):
+	    counter = [0]*9;
+	else:
+		event = parseInt(input_data.readline());
+		print(event);
 
-	if event!=None and event>=1 and event<=9:
-		# Write into file.
-		counter[event-1] += 1;
-		muon += [event];
-		# print muon;
-		current_time = round(time.time(),5);
-		
-		write2file(str(current_time)+','+str(counter));
-		
-		# Plot histogram.
+		if event!=None and event>=1 and event<=9:
+			# Write into file.
+			counter[event-1] += 1;
+			muon += [event];
+			# print muon;
+			current_time = round(time.time(),5);
+			
+			write2file(str(current_time)+','+str(counter));
+			
+			# Plot histogram.
 
-		fig_name = "./bar/fig_" + str(len(muon));
+			fig_name = "./bar/fig_" + str(len(muon));
 
-		plt.cla();
-		
-		# plt.hist(muon,bins);
-		plt.title("Histogram");
-		plt.xlabel("No.");
-		plt.ylabel("Count");
+			plt.cla();
+			
+			# plt.hist(muon,bins);
+			plt.title("Histogram");
+			plt.xlabel("No.");
+			plt.ylabel("Count");
 
-		objects = ('1','2','3','4','5','6','7','8','9');
-		y_pos = np.arange(len(objects));
-		# performance = [10,8,6,4,2,1];
-		 
-		plt.bar(y_pos, counter, align='center', alpha=0.5)
-		plt.xticks(y_pos, objects)
-		# plt.ylabel('Usage')
-		# plt.title('Programming language usage')
+			objects = ('1','2','3','4','5','6','7','8','9');
+			y_pos = np.arange(len(objects));
+			# performance = [10,8,6,4,2,1];
+			 
+			plt.bar(y_pos, counter, align='center', alpha=0.5)
+			plt.xticks(y_pos, objects)
+			# plt.ylabel('Usage')
+			# plt.title('Programming language usage')
 
-		plt.draw();
-		plt.show();
-		# plt.savefig(fig_name);
-		plt.pause(0.01);
+			plt.draw();
+			plt.show();
+			# plt.savefig(fig_name);
+			plt.pause(0.01);
 
-		# file.close();
+			# file.close();
 		
 s.close()
