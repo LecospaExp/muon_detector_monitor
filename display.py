@@ -72,7 +72,7 @@ else:
 
 		plt.draw();
 		plt.show();
-		plt.savefig(fig_name);
+		# plt.savefig(fig_name);
 		plt.pause(0.01);
 
 		# file.close();
