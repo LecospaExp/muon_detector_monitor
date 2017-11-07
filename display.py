@@ -2,7 +2,7 @@ import serial
 import time
 import numpy as np
 import matplotlib.pyplot as plt
-import plotly.plotly as py
+# import plotly.plotly as py
 import RPi.GPIO as GPIO
 
 # Change string to integer
