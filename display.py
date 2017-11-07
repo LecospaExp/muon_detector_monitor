@@ -20,7 +20,7 @@ def write2file(string):
 	file.close();
 
 # Reset trigger
-GPIO.setmode(BOARD);
+GPIO.setmode(GPIO.BOARD);
 GPIO.setup(16, GPIO.IN);
 
 start_time = round(time.time(), 5);
