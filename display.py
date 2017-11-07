@@ -36,7 +36,7 @@ write2file('===Start counting from '+str(start_time)+'===');
 plt.ion();
 
 while True:
-	if GPIO.input(16):
+	if !lGPIO.input(16):
 	    counter = [0]*9;
 	else:
 		event = parseInt(input_data.read());
