@@ -39,7 +39,7 @@ while True:
 	if GPIO.input(16):
 	    counter = [0]*9;
 	else:
-		event = parseInt(input_data.readline());
+		event = parseInt(input_data.read());
 		print(event);
 
 		if event!=None and event>=1 and event<=9:
