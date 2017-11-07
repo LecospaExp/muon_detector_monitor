@@ -5,8 +5,7 @@ import random
 from threading import Timer
 import threading
 import numpy as np
-from scipy.optimize import curve_fit
-from scipy.misc import factorial
+
 
 # parameter
 binRange = [0, 50]
@@ -47,8 +46,6 @@ def countdownThread():
 	while True:
 		time.sleep(period)
 		event.set()
-def poisson(k, lamb):
-    return (lamb**k/factorial(k)) * np.exp(-lamb)
 
 t1 = Timer(0, countdownThread)	
 t1.start()
@@ -73,17 +70,12 @@ while True:
 		if idx%3==0:
 			ax.set_ylabel("Count")
 		entries, bin_edges, patches  = ax.hist(counterArr[idx], range=binRange, bins=binRange[1], normed=True)
-		
-		bin_middles = 0.5*(bin_edges[1:] + bin_edges[:-1])
-		parameters, cov_matrix = curve_fit(poisson, bin_middles, entries) 
-		x_plot = np.linspace(binRange[0], binRange[1], 100)
-		ax.plot(x_plot, poisson(x_plot, *parameters), 'r-', lw=2)
 
 		numHit = np.array(counterArr[idx], dtype=np.float64)
 		text  = "Total "+str(np.sum(numHit))+"\n"
 		text += "Mean  "+str(np.round(np.mean(numHit),4))+"\n"
 		text += "Var   "+str(np.round(np.var(numHit),4))+"\n"
-		text += "Lmb   "+str(np.round(parameters[0],4))
+		text += "Rate  "+str(np.round(np.var(numHit)/5,4))+"\n"
 
 		ax.text(ax.get_xlim()[1]-20, ax.get_ylim()[1]/2, text,family="monospace",
         bbox={'facecolor':'red', 'alpha':0.5, 'pad':10})
