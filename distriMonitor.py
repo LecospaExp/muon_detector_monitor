@@ -27,7 +27,7 @@ def write2file(str):
 	file.write(str+'\n');
 	file.close();
 
-SerCounter = serial.Serial('/dev/ttyUSB0',115200)
+SerCounter = serial.Serial('/dev/ttyAMA0',115200)
 SerCounter.flushInput()
 counterArr = []
 counter = 0
@@ -71,7 +71,7 @@ while True:
 	totalIter += 1
 	event.clear()
 	event.wait()
-	fig.clf()
+	plt.clf()
 
 		
 	totaltime = time.time()-strTime
